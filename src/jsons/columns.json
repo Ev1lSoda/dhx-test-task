@@ -106,6 +106,6 @@
       "align":"center",
       "resizable":true,
       "editing":false,
-      "sortable":false
+      "sortable":true
    }
 ]
