@@ -8,16 +8,30 @@ function GridComponent(props) {
   const dhxGridEl = useRef(null);
   const [sortValue, setSortValue] = useLocalStorage('dhx_sort_value');
 
-  useEffect(() => { 
+  useEffect(() => {
+    let timer = null;
     const grid = new Grid(dhxGridEl.current, {
       data,
       columns
     });
 
+    grid.events.on('afterSort', (col, dir) => {
+      setSortValue({by: col.id, dir})
+    })
+
+    if(grid && grid.data && sortValue){
+      timer = setTimeout(() => {
+        grid.data.sort({
+          ...sortValue
+        });
+      }, 0)
+    }
+
     return () => {
       grid && grid.destructor();
+      timer && clearTimeout(timer);
     }
-  }, [columns, data, dhxGridEl]);
+  }, [columns, data]);
 
   return (
       <div className="main__grid" ref={dhxGridEl}></div>

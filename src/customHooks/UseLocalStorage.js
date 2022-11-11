@@ -7,11 +7,11 @@ function getItem(key) {
 export default function useLocalStorage(initialKey) {
     let savedValue = getItem(initialKey);
     if (!savedValue) {
-        localStorage.setItem(initialKey, JSON.stringify(''))
+        localStorage.setItem(initialKey, null)
     } else {
         savedValue = JSON.parse(savedValue);
     }
-    const [value, setValue] = useState(savedValue ?? '');
+    const [value, setValue] = useState(savedValue ?? null);
     useDebugValue(value);
 
     useEffect(()=>{
