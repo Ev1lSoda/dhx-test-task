@@ -1,7 +1,10 @@
-import './App.css';
 import GridComponent from './GridComponent/GridComponent';
-import data from './data.json'
-import columns from './columns.json'
+
+import './App.css';
+import "dhx-grid/codebase/grid.min.css";
+
+import data from './jsons/data.json'
+import columns from './jsons/columns.json'
 
 function App() {
   return (
